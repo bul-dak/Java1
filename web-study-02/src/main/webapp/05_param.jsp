@@ -5,13 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="param.js"></script>
 </head>
 <body>
 	<h1>이수정</h1>
-	<form action="ParamServlet2" method="get">
-		A : <input type ="text" name="A"><br>
-		B : <input type ="text" name="B"><br>
-		<input type = "submit" value="전송">
+	<form action="ParamServlet" method="get" name= "frm">
+		
+		아이디 : <input type ="text" name="id"><br>
+		나 이 : <input type ="password" name="age"><br>
+		<input type = "submit" value="전송" onclick = "return check()">
 	</form>
 </body>
 </html>
