@@ -16,10 +16,14 @@ public class MemberDAO {
 	//싱글톤 패턴으로 객체 생성
 	private static MemberDAO instance = new MemberDAO();
 	
-	public static MemberDAO getInstance() {
+	public static MemberDAO getInstance() { //외부에서 수정은 못하고 값을 얻을 수만 있도록 readonly property로 
+		                                    //만들기 위해서 setter는 정의하지 않고 getter만 정의함.
 		return instance;
 	}
+	
+	
 	//DB연결 Connection타입 
+	//getConnection()메서드
 	public Connection getConnection() throws Exception { 
 		Context initContext = new InitialContext();
 		Context envContext  = (Context)initContext.lookup("java:/comp/env");
@@ -27,6 +31,8 @@ public class MemberDAO {
 		Connection conn = ds.getConnection();
 		return conn;
 	}
+	
+	//userCheck(String userid, String pwd)메서드. 반환형:int
 	public int userCheck(String userid, String pwd) {
 		int result = -1;
 		String sql = "select pwd from member where userid=?";
@@ -64,6 +70,8 @@ public class MemberDAO {
 		
 		return result;
 	}
+	
+	//getMember(String userid)메서드. 반환형:MemberVO
 	public MemberVO getMember(String userid) {
 		MemberVO mVo = null;
 		String sql = "select * from member where userid=?";
@@ -100,6 +108,8 @@ public class MemberDAO {
 		}
 		return mVo;
 	}
+	
+	//confirmID(String userid)메서드. 반환형:int
 	public int confirmID(String userid) {
 		int result=-1;
 		
@@ -135,4 +145,72 @@ public class MemberDAO {
 		
 		return result;
 	}
+
+
+	public int insertMember(MemberVO mVo) {
+		int result = -1;
+//		String sql = "insert into member values(?, ?, ?, ?, ?, ?)";
+		String sql = "insert into member(name, userid, pwd, email, phone, admin)"
+				     + "values(?, ?, ?, ?, ?, ?)";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = getConnection();
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, mVo.getName());
+			pstmt.setString(2, mVo.getUserid());
+			pstmt.setString(3, mVo.getPwd());
+			pstmt.setString(4, mVo.getEmail());
+			pstmt.setString(5, mVo.getPhone());
+			pstmt.setInt(6, mVo.getAdmin());
+			
+			result = pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				if(pstmt !=null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch(Exception e) {
+			e.printStackTrace();
+		}
+			
+	}
+		return result;
+}
+
+
+	public int updateMember(MemberVO mVo) {
+		int result = -1;
+		String sql = "update member set pwd=?, email=?, phone=?, admin=? where userid=?";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mVo.getPwd());
+			pstmt.setString(2, mVo.getEmail());
+			pstmt.setString(3, mVo.getPhone());
+			pstmt.setInt(4, mVo.getAdmin());
+			pstmt.setString(5, mVo.getUserid());
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	
+
 }

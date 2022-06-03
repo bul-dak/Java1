@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="script/member.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -15,16 +16,16 @@
    <input type="submit" value="중복체크"><br>
    
       <c:if test = "${result == 1}">
-   <script type="text/javascript">
-   opener.document.frm.userid.value="";
-   </script>
-   ${userid}는 이미 사용중인 아이디 입니다. 
-   </c:if>
+   		<script type="text/javascript">
+   			opener.document.frm.userid.value="";
+   		</script>
+   		${userid}는 이미 사용중인 아이디 입니다. 
+  	  </c:if>
    
-   <c:if test = "${result == -1 }">
-    ${userid}는 사용 가능한 아이디 입니다.
-   <input type="button" value="사용" class="cancle" onclick="idok('${userid}')">
-   </c:if>
+	  <c:if test = "${result == -1 }">
+	    ${userid}는 사용 가능한 아이디 입니다.
+	  	<input type="button" value="사용" class="cancle" onclick="idok()">
+	  </c:if>
 </form>
 </body>
 </html>

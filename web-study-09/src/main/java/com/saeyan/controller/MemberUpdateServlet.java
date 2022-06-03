@@ -8,23 +8,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.saeyan.dao.MemberDAO;
 import com.saeyan.dto.MemberVO;
 
 
-@WebServlet("/join.do")
-public class JoinServlet extends HttpServlet {
+@WebServlet("/memberUpdate.do")
+public class MemberUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
-    public JoinServlet() {
-    }
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dis = request.getRequestDispatcher("member/join.jsp");
-		dis.forward(request, response);
+		String userid = request.getParameter("userid");
+		MemberDAO mDao = MemberDAO.getInstance();
 		
+		MemberVO mVo = mDao.getMember(userid);
+		request.setAttribute("mVo", mVo); //안하면 널값만 포워드 됨.
+		
+		RequestDispatcher dis = request.getRequestDispatcher("member/memberUpdate.jsp");
+		dis.forward(request, response);
+	
 	}
 
 	
@@ -32,7 +35,6 @@ public class JoinServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		MemberVO mVo = new MemberVO();
-		mVo.setName(request.getParameter("name"));
 		mVo.setUserid(request.getParameter("userid"));
 		mVo.setPwd(request.getParameter("pwd"));
 		mVo.setEmail(request.getParameter("email"));
@@ -40,18 +42,10 @@ public class JoinServlet extends HttpServlet {
 		mVo.setAdmin(Integer.parseInt(request.getParameter("admin")));
 		
 		MemberDAO mDao = MemberDAO.getInstance();
-		int result = mDao.insertMember(mVo);
 		
-		HttpSession session = request.getSession();
-		if(result == 1) {
-			session.setAttribute("userid", mVo.getUserid());
-			request.setAttribute("message", "회원 가입에 성공했습니다.");
-		}else if (result == -1) {
-			request.setAttribute("message", "회원 가입에 실패했습니다.");
-		}
+		mDao.updateMember(mVo);
 		
-		RequestDispatcher dis = request.getRequestDispatcher("member/login.jsp");
-		dis.forward(request, response);
+		response.sendRedirect("login.do");
 	}
 
 }

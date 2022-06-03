@@ -54,7 +54,7 @@
 				<input type="reset" value="취소">
 			</td>
 		</tr>
-		<tr><td colspan="2">${message }</td></tr>
+		<tr><td colspan="2">${message}</td></tr>
 	</table>
 </form>
 

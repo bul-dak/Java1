@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "member/login.jsp";
 		HttpSession session = request.getSession();
-		if(session.getAttribute("loginUser") != null) {
+		if(session.getAttribute("loginUser") != null) { //이미 로그인 된 사용자이면
 			url = "main.jsp"; //메인 페이지로 이동한다.
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
