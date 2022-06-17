@@ -30,11 +30,21 @@
 			</tr>
 			<tr>
 				<th>권한</th>
-				<td>${employee.lev }</td>
+					<td>
+						<c:choose>
+							<c:when test="${employee.lev eq 'A'}">운영자</c:when>
+							<c:otherwise>일반회원</c:otherwise>					
+						</c:choose>
+					</td>
 			</tr>
 			<tr>
 				<th>성별</th>
-				<td>${employee.gender }</td>
+				<td>
+					<c:choose>
+						<c:when test="${employee.gender eq '1'}">남자</c:when>
+						<c:otherwise>여자</c:otherwise>
+					</c:choose>
+				</td>
 			</tr>
 			<tr>
 				<th>전화번호</th>

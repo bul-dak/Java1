@@ -19,7 +19,7 @@ public class EmployeeDAO {
 
 	public List<EmployeeVO> selectAllEmployees() {
 		List<EmployeeVO> list = new ArrayList<EmployeeVO>();
-		String sql = "select * from employees order by id desc";
+		String sql = "SELECT * FROM employees order by enter desc";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

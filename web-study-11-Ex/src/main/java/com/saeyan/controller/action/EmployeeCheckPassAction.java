@@ -25,7 +25,7 @@ public class EmployeeCheckPassAction implements Action {
 		if(eVo.getPass().equals(pass)) {
 			url = "employee/success.jsp";
 		}else {
-			url = "employeeCheckPass.jsp";
+			url = "employee/employeeCheckPass.jsp";
 			request.setAttribute("message", "비밀번호가 틀렸습니다.");
 		}
 		

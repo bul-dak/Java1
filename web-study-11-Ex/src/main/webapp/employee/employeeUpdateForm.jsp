@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,19 +30,39 @@
 			<tr>
 				<th>권한</th>
 				<td>
-					<select name="lev">
-						<option value="1" selected="selected">운영자</option>
-						<option value="2">일반회원</option>
-					</select>
+					<c:choose>
+						<c:when test="${employee.lev eq 'A'}">
+							<select name="lev">
+								<option value="A" selected="selected">운영자</option>
+								<option value="B">일반회원</option>
+							</select>
+						</c:when>
+						<c:otherwise>
+							<select name="lev">
+								<option value="A">운영자</option>
+								<option value="B" selected="selected">일반회원</option>
+							</select>
+						</c:otherwise>
+					</c:choose>
 				</td>
 			</tr>
 			<tr>
 				<th>성별</th>
 				<td>
-					<select name="gender">
-						<option value="1" selected="selected">남자</option>
-						<option value="2">여자</option>
-					</select>
+					<c:choose>
+						<c:when test="${employee.gender eq '1'}">
+							<select name="gender">
+								<option value="1" selected="selected">남자</option>
+								<option value="2">여자</option>
+							</select>
+						</c:when>
+						<c:otherwise>
+							<select name="gender">
+								<option value="1">남자</option>
+								<option value="2" selected="selected">여자</option>
+							</select>
+						</c:otherwise>
+					</c:choose>
 				</td>
 			</tr>
 			<tr>
