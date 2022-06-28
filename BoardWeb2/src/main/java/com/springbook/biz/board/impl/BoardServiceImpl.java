@@ -13,38 +13,20 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired
 	private BoardDAO boardDAO;
 	
-//	public BoardServiceImpl() {
-//		log = new Log4jAdvice();
-//	}
-	
-	@Override
 	public void insertBoard(BoardVO vo) {
-//		log.printLogging();
 		boardDAO.insertBoard(vo);
 	}
-
-	@Override
 	public void updateBoard(BoardVO vo) {
-//		log.printLogging();
 		boardDAO.updateBoard(vo);
 	}
-
-	@Override
 	public void deleteBoard(BoardVO vo) {
-//		log.printLogging();
 		boardDAO.deleteBoard(vo);
 	}
-
-	@Override
 	public BoardVO getBoard(BoardVO vo) {
-//		log.printLogging();
 		return boardDAO.getBoard(vo);
 	}
-
-	@Override
 	public List<BoardVO> getBoardList(BoardVO vo) {
-//		log.printLogging();
 		return boardDAO.getBoardList(vo);
 	}
-
+	
 }
