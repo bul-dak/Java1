@@ -9,23 +9,18 @@ public class CollectionBean {
 	private List<String> addressList;
 	private Set<String> addressSet;
 	private Map<String, String> addressMap;
-	private Properties addressProperties;
+	private Properties addressProp;
+	public CollectionBean() {
+		System.out.println("CollectionBean");
+	}
 	
-
-	public Properties getAddressProperties() {
-		return addressProperties;
+	public List<String> getAddressList() {
+		return addressList;
 	}
 
-	public void setAddressProperties(Properties addressProperties) {
-		this.addressProperties = addressProperties;
-	}
-
-	public Map<String, String> getAddressMap() {
-		return addressMap;
-	}
-
-	public void setAddressMap(Map<String, String> addressMap) {
-		this.addressMap = addressMap;
+	public void setAddressList(List<String> addressList) {
+		System.out.println("setAddressList");
+		this.addressList = addressList;
 	}
 
 	public Set<String> getAddressSet() {
@@ -36,17 +31,21 @@ public class CollectionBean {
 		this.addressSet = addressSet;
 	}
 
-	public List<String> getAddressList() {
-		return addressList;
+	public Map<String, String> getAddressMap() {
+		return addressMap;
 	}
 
-	public void setAddressList(List<String> addressList) {
-		this.addressList = addressList;
+	public void setAddressMap(Map<String, String> addressMap) {
+		this.addressMap = addressMap;
 	}
 
-	@Override
-	public String toString() {
-		return "CollectionBean [addressList=" + addressList + "]";
+	public Properties getAddressProp() {
+		return addressProp;
 	}
+
+	public void setAddressProp(Properties addressProp) {
+		this.addressProp = addressProp;
+	}
+
 	
 }

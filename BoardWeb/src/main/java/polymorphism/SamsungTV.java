@@ -2,60 +2,50 @@ package polymorphism;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Component("samsung")
+@Component //Component 어노테이션이 있으면 메모리에 올라가있는다.
 public class SamsungTV implements TV{
-	@Autowired
-//	@Qualifier("apple")
-//	@Resource(name="sony")
+//	@Autowired
+//	@Qualifier("appleSpeaker")
+	@Resource(name="appleSpeaker") //Resource를 이용하면 위 두문장을 하나로 축약할 수 있다.
 	private Speaker speaker;
 	private int price;
 	
 	public void setSpeaker(Speaker speaker) {
-		System.out.println("setSpeaker호출");
+		System.out.println("setSpeaker 호출");
 		this.speaker = speaker;
 	}
 	public void setPrice(int price) {
-		System.out.println("setPrice호출");
+		System.out.println("setPrice 호출");
 		this.price = price;
 	}
-	
-
 	public SamsungTV() {
-		System.out.println("samsungTV 객체 생성");
-		}
+		System.out.println("SamsungTV 생성자(default)");
+	}
 	public SamsungTV(Speaker speaker) {
-		System.out.println("samsungTV(2) 객체 생성");
+		System.out.println("SamsungTV 생성자(1개)");
 		this.speaker = speaker;
-		}
+	}
 	public SamsungTV(Speaker speaker, int price) {
-		System.out.println("samsungTV(3) 객체 생성");
+		System.out.println("SamsungTV 생성자(2개)");
 		this.speaker = speaker;
 		this.price = price;
-		}
-	
-	void initMethod() {
-		System.out.println("초기화 메소드");
 	}
-	
 	public void powerOn() {
-		System.out.print("SamsungTV --- 전원 켠다...");
-//		System.out.printf("price : %d\n", price);
+		System.out.println("SamsungTV---전원 켠다.");	
 	}
 	public void powerOff() {
-		System.out.println("SamsungTV --- 전원 끈다...");
+		System.out.println("SamsungTV---전원 끈다.");	
 	}
 	public void volumeUp() {
+//		System.out.println("SamsungTV---소리 키운다.");	
 //		speaker = new SonySpeaker();
 		speaker.volumeUp();
-		System.out.println("SamsungTV --- 소리 올린다..");
 	}
-		public void volumeDown() {
+	public void volumeDown() {
+//		System.out.println("SamsungTV---소리 내린다.");	
 //		speaker = new SonySpeaker();
 		speaker.volumeDown();
-		System.out.println("SamsungTV --- 소리 내린다..");
 	}
 }

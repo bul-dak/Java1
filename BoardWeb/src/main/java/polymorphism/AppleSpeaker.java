@@ -2,22 +2,19 @@ package polymorphism;
 
 import org.springframework.stereotype.Component;
 
-//@Component("apple")
+@Component
 public class AppleSpeaker implements Speaker{
-	
-	
 	public AppleSpeaker() {
-		System.out.println("Apple Speaker 생성자");
+		System.out.println("===> AppleSpeaker 생성자");
 	}
 	@Override
 	public void volumeUp() {
-		System.out.println("Apple Speaker 소리울린다.");
+		System.out.println("AppleSpeaker---소리 올린다.");
 	}
 
 	@Override
 	public void volumeDown() {
-		System.out.println("Apple Speaker 소리내린다.");
-	
+		System.out.println("AppleSpeaker---소리 내린다.");
 	}
 
 }

@@ -8,32 +8,22 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 public class BoardServiceClient {
 
 	public static void main(String[] args) {
-		//1.Spring 컨테이너를 구동한다.
-		AbstractApplicationContext container = 
-				new GenericXmlApplicationContext("applicationContext3.xml");
-		
-		//2.Spring 컨테이너로부터 BoardServiceImpl객체를 Lookup한다.
+		AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
+
 		BoardService boardService = (BoardService)container.getBean("boardService");
 		
-		
-		//3.글 등록 기능 테스트
 		BoardVO vo = new BoardVO();
 //		vo.setSeq(100);
-		vo.setTitle("홈런볼");
-		vo.setWriter("와플");
-		vo.setContent("맛있다");
+		vo.setTitle("임시 제목5");
+		vo.setWriter("홍길동5");
+		vo.setContent("임시 내용5 ............ ");
+		boardService.insertBoard(vo);
 		
-//		boardService.insertBoard(vo);
-		
-		
-
-		//4.글 목록 검색 기능 테스트
 		List<BoardVO> boardList = boardService.getBoardList(vo);
 		for(BoardVO board : boardList) {
-			System.out.println("---> "+ board.toString());
+			System.out.println("---> " + board.toString());
 		}
 		
-		//5.Spring 컨테이너 종료
 		container.close();
 	}
 
