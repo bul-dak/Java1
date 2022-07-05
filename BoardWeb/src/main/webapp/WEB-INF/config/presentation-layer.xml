@@ -23,5 +23,11 @@
 <bean id="insertBoard" class="com.springbook.view.board.InsertBoardController"></bean>
 <bean id="updateBoard" class="com.springbook.view.board.UpdateBoardController"></bean>
 <bean id="deleteBoard" class="com.springbook.view.board.DeleteBoardController"></bean>
-<bean id="logout" class="com.springbook.view.board.LogoutController"></bean>
+<bean id="logout" class="com.springbook.view.user.LogoutController"></bean>
+
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/WEB-INF/board/"></property>
+	<property name="suffix" value=".jsp"></property>
+</bean>
+
 </beans>

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.ezen.market.OEM.OEMarketBoardVO;
 import com.ezen.market.OEM.OEMarketUserVO;
 import com.ezen.market.common.JDBCUtil;
 
@@ -41,5 +42,10 @@ public class OEMarketDAO {
 			JDBCUtil.close(rs, pstmt, conn);
 		}
 		return user;
+	}
+
+	public static void insertMarket(OEMarketBoardVO vo) {
+	
+	
 	}
 }
