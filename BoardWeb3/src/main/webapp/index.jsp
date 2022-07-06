@@ -8,7 +8,8 @@
 </head>
 <body>
 	<h1>게시판 프로그램</h1>
-	<a href="login.do">로그인</a>
-	<a href="getBoardList.do">글 목록 바로가기</a>
+	<a href="login.do">로그인</a><br>
+	<a href="getBoardList.do">글 목록 바로가기</a><br>
+	<a href="dataTransform.do">글 목록 변환처리</a><br>
 </body>
 </html>

@@ -16,7 +16,7 @@ ul li {
 <body>
 
 	<div style="text-align: center;">상품 등록</div>
-	<form action="/uploadFile.do" name="uploadForm" method="post" enctype="multipart/form-data"	>
+	<form action="uploadFile.do" name="uploadForm" method="post" enctype="multipart/form-data"	>
 		<table style="padding: 10px; margin: 0 auto;">
 			<tr>
 				<th style="text-align: center;">제목</th>
@@ -33,21 +33,10 @@ ul li {
 			<tr>
 				<th style="text-align: center;">파일</th>
 				<td>
-				<input type="file" name="imgFile1" style="width: 100%;" name="pictureurl">
+				<input type="file" name="imgFile" style="width: 100%;" name="pictureurl">
 				</td>
 			</tr>
-			<tr>
-				<td></td>
-				<td>
-				<input type="file" name="imgFile2" style="width: 100%;" name="pictureurl">
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>
-				<input type="file" name="imgFile3" style="width: 100%;" name="pictureurl">
-				</td>
-			</tr>
+	
 			<tr>
 				<td colspan="2" style="text-align: center;">
 				<input type="submit" value="등록"> 
@@ -55,10 +44,10 @@ ul li {
 				<input type="button" value="목록" onclick="location.href='#'">
 				</td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<th style="text-align: center;">비밀번호</th>
 				<td><input type="text" name="pass" style="width: 100%;"></td>
-			</tr>
+			</tr> -->
 		</table>
 	</form>
 

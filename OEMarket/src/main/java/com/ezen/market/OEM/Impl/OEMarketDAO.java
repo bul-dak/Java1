@@ -14,6 +14,8 @@ public class OEMarketDAO {
 	private ResultSet rs = null;
 	
 	private final String USER_GET = "select * from marketuser where id=? and pass=?";
+	private final String MARKET_INSERT = "insert into marketboard(num,title,price,content) "
+			+ "values((select nvl(max(num), 0)+1 from marketboard),?,?,?)";
 	
 	public OEMarketUserVO getUser(OEMarketUserVO vo) {
 		OEMarketUserVO user = null;
@@ -43,9 +45,30 @@ public class OEMarketDAO {
 		}
 		return user;
 	}
-
-	public static void insertMarket(OEMarketBoardVO vo) {
 	
+	//num,id,pass,name,title,price,content,image
+	public void insertMarket(OEMarketBoardVO vo) {
+		try {
+			try {
+				conn = JDBCUtil.getConnection();
+				pstmt = conn.prepareStatement(MARKET_INSERT);
+//				pstmt.setString(1, vo.getId());
+//				pstmt.setString(2, vo.getPass());
+//				pstmt.setString(3, vo.getName());
+				pstmt.setString(1, vo.getTitle());
+				pstmt.setInt(2, vo.getPrice());
+				pstmt.setString(3, vo.getContent());
+//				pstmt.set(4, vo.getImage());
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(pstmt, conn);
 	
 	}
+}
+
 }
