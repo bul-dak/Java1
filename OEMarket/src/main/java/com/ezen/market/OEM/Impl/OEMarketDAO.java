@@ -3,19 +3,23 @@ package com.ezen.market.OEM.Impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
 
 import com.ezen.market.OEM.OEMarketBoardVO;
 import com.ezen.market.OEM.OEMarketUserVO;
 import com.ezen.market.common.JDBCUtil;
 
+@Repository
 public class OEMarketDAO {
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
 	private final String USER_GET = "select * from marketuser where id=? and pass=?";
-	private final String MARKET_INSERT = "insert into marketboard(num,title,price,content) "
-			+ "values((select nvl(max(num), 0)+1 from marketboard),?,?,?)";
+	private final String MARKET_INSERT = "insert into marketboard(num,id,pass,name,title,price,content) "
+			+ "values((select nvl(max(num), 0)+1 from marketboard),?,?,?,?,?,?)";
 	
 	public OEMarketUserVO getUser(OEMarketUserVO vo) {
 		OEMarketUserVO user = null;
@@ -47,17 +51,19 @@ public class OEMarketDAO {
 	}
 	
 	//num,id,pass,name,title,price,content,image
-	public void insertMarket(OEMarketBoardVO vo) {
+	public void insertBoard(OEMarketBoardVO vo) {
 		try {
 			try {
+				System.out.println("vo.getId(): "+ vo.getId());
 				conn = JDBCUtil.getConnection();
+				System.out.println("db conn");
 				pstmt = conn.prepareStatement(MARKET_INSERT);
-//				pstmt.setString(1, vo.getId());
-//				pstmt.setString(2, vo.getPass());
-//				pstmt.setString(3, vo.getName());
-				pstmt.setString(1, vo.getTitle());
-				pstmt.setInt(2, vo.getPrice());
-				pstmt.setString(3, vo.getContent());
+				pstmt.setString(1, vo.getId());
+				pstmt.setString(2, vo.getPass());
+				pstmt.setString(3, vo.getName());
+				pstmt.setString(4, vo.getTitle());
+				pstmt.setInt(5, vo.getPrice());
+				pstmt.setString(6, vo.getContent());
 //				pstmt.set(4, vo.getImage());
 				pstmt.executeUpdate();
 			} catch (Exception e) {
@@ -70,5 +76,21 @@ public class OEMarketDAO {
 	
 	}
 }
+
+	public void updateBoard(OEMarketBoardVO vo) {
+	}
+
+	public void deleteBoard(OEMarketBoardVO vo) {
+	}
+
+	public OEMarketBoardVO getBoard(OEMarketBoardVO vo) {
+		
+		return null;
+	}
+
+	public List<OEMarketBoardVO> getBoardList(OEMarketBoardVO vo) {
+		
+		return null;
+	}
 
 }

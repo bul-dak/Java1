@@ -16,7 +16,10 @@ ul li {
 <body>
 
 	<div style="text-align: center;">상품 등록</div>
-	<form action="uploadFile.do" name="uploadForm" method="post" enctype="multipart/form-data"	>
+	<form action="uploadFile.do" method="post" enctype="multipart/form-data"	>
+		<input type="hidden" name="id" value="456">
+		<input type="hidden" name="pass" value="456">
+		<input type="hidden" name="name" value="456">
 		<table style="padding: 10px; margin: 0 auto;">
 			<tr>
 				<th style="text-align: center;">제목</th>
@@ -33,7 +36,7 @@ ul li {
 			<tr>
 				<th style="text-align: center;">파일</th>
 				<td>
-				<input type="file" name="imgFile" style="width: 100%;" name="pictureurl">
+				<input type="file" name="image" style="width: 100%;">
 				</td>
 			</tr>
 	
