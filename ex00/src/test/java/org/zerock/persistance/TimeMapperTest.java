@@ -1,4 +1,4 @@
-package org.zerock.persistence;
+package org.zerock.persistance;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,15 +19,17 @@ public class TimeMapperTest {
 	
 	@Test
 	public void testGetTime() {
-		log.info("-----------------------");
-		log.info("info1: "+ timeMapper.getClass().getName());
-		log.info("info2: "+ timeMapper.getTime());
+		log.info("-------------------------");
+		log.info(timeMapper.getClass().getName());
+		log.info(timeMapper.getTime());
 	}
 	
 	@Test
 	public void testGetTime2() {
-		log.info("-----------------------");
-		log.info("info1: "+ timeMapper.getClass().getName());
-		log.info("getTime2: "+ timeMapper.getTime2());
+		log.info("------------------------");
+		log.info(timeMapper.getClass().getName());
+		log.info(timeMapper.getTime2());
 	}
+
+
 }

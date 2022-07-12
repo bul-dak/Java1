@@ -1,4 +1,4 @@
-package org.zerock.persistence;
+package org.zerock.persistance;
 
 import java.sql.Connection;
 
@@ -27,8 +27,8 @@ public class DataSourceTest {
 	
 	@Test
 	public void testConnection() {
-		
 		try(Connection con = dataSource.getConnection()) {
+			log.info("hikari dbcp------------------------");
 			log.info(con);
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -36,16 +36,15 @@ public class DataSourceTest {
 	}
 	@Test
 	public void testMybatis() {
-		
-		try(SqlSession session = sqlSessionFactory.openSession(); 
-				Connection con = session.getConnection()) {
-			log.info("------------");
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			Connection con = session.getConnection();
+			log.info("mybatis------------------------");
 			log.info(con);
 			log.info(session);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-
-
-}
+	
+		
+	}

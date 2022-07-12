@@ -6,13 +6,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@RequestMapping("/sample/*")
 @Log4j
+@RequestMapping("/sample/*")
 public class SampleController {
-
-	@RequestMapping("")
+		
+	@RequestMapping("/basic")
 	public void basic() {
-		log.info("basic------------");
+		log.info("basic---------");
+	}
+	
+	@RequestMapping("/basic2")
+	public String basic2() {
+		log.info("basic2---------");
+		return "basic";
 	}
 	
 }
