@@ -29,5 +29,8 @@
 		
 	<!-- 마이바티스 사용하기 위해 경로 설정. -->	
 	<mybatis-spring:scan base-package="org.zerock.mapper"/>
+		
+	<context:component-scan base-package="org.zerock.service">
+	</context:component-scan>
 			
 </beans>
