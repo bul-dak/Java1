@@ -7,14 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Basic</h1><br>
-	
-	<h3>${list }</h3>
-	<h3>${list.name }</h3>
-
-	<h3>${sampleDAO }</h3>
-	<h3>${sampleDAO.name }</h3><br>
-	
+	<h1>basic page</h1>
+	<h3>${list}</h3>
+	<h3>${list.name}</h3>
+	<h3>${list.age}</h3>
+	<h3>${sampleDAO}</h3>
+	<h3>${sampleDAO.name}</h3>
 	
 </body>
 </html>

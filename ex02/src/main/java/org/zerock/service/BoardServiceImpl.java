@@ -14,33 +14,37 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
-	private BoardMapper mapper;
-	
-	@Override
-	public void register(BoardVO vo) {
-//		mapper.insert(vo);
-	    mapper.insertSelectKey(vo);
-	}
+   private BoardMapper mapper;
+   
+   @Override
+   public void register(BoardVO vo) {
+      log.info("register=========");
+//      mapper.insert(vo);
+      mapper.insertSelectKey(vo);
+   }
 
-	@Override
-	public BoardVO get(Long bno) {
-		return mapper.read(bno);
-	}
+   @Override
+   public BoardVO get(Long bno) {
+      
+      return mapper.read(bno);
+   }
 
-	@Override
-	public int modify(BoardVO vo) {
-		return mapper.update(vo);
-	}
+   @Override
+   public int modify(BoardVO vo) {
+      
+      return mapper.update(vo);
+   }
+
+   @Override
+   public List<BoardVO> getList() {
+      
+      return mapper.getList();
+   }
 
 	@Override
 	public int remove(Long bno) {
 		return mapper.delete(bno);
 	}
-
-	@Override
-	public List<BoardVO> getList() {
-		return mapper.getList();
-	}
-	
-		
+   
+      
 }

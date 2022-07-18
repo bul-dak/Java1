@@ -1,11 +1,14 @@
 package org.zerock.mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 
 import lombok.extern.log4j.Log4j;
 
@@ -13,56 +16,61 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class BoardMapperTests {
+
 	@Autowired
 	private BoardMapper mapper;
 	
 	@Test
-	public void testgetList() {
+	public void testGetList() {
 		log.info(mapper.getList());
 	}
-
+	
 	@Test
-	public void testread() {
-		log.info(mapper.read(4L));
+	public void testRead() {
+		log.info(mapper.read(1L));
 	}
 	
 	@Test
-	public void testdelete() {
-		log.info(mapper.delete(1L));
+	public void testDelete() {
+		log.info("delete : "+mapper.delete(1L));
 	}
 	
 	@Test
-	public void testinsert() {
+	public void testInsert() {
 		BoardVO vo = new BoardVO();
-		vo.setTitle("이수정");
-		vo.setContent("모자샀다");
-		vo.setWriter("MLB");
-		log.info(mapper.insert(vo));
+		vo.setTitle("title1");
+		vo.setContent("content");
+		vo.setWriter("writer");
+		
+		log.info("insert : " + mapper.insert(vo));
 	}
 	
 	@Test
-	public void testinsertSelectKey() {
+	public void testInsertSelectKey() {
 		BoardVO vo = new BoardVO();
-		vo.setBno(15L);
-		vo.setTitle("AAA");
-		vo.setContent("모자샀다");
-		vo.setWriter("MLB");
-		log.info(mapper.insertSelectKey(vo));
+		vo.setTitle("title5");
+		vo.setContent("content");
+		vo.setWriter("writer");
+		
+		log.info("insert : " + mapper.insertSelectKey(vo));
 	}
 	
 	@Test
 	public void testUpdate() {
 		BoardVO vo = new BoardVO();
-		vo.setBno(15L);
-		vo.setTitle("BBB");
-		vo.setContent("BBB");
-		vo.setWriter("BBB");
-		log.info(mapper.update(vo));
+		vo.setBno(3L);
+		vo.setTitle("수정");
+		vo.setContent("수정수정");
+		vo.setWriter("이수정");
+		
+		log.info("insert : " + mapper.update(vo));
 	}
 	
-
-
-
-
-
-}
+	@Test
+	public void testPaging() {
+		Criteria crl = new Criteria();
+		List<BoardVO> list = mapper.getListWithPagging(crl);
+		log.info(list);
+	}
+	
+}//
