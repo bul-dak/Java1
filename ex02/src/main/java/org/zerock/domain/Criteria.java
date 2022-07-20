@@ -12,14 +12,20 @@ public class Criteria {
 	private int pageNum;
 	private int amount;
 	
+	private String type;
+	private String keyword;
+	
+	public String[] gettypeArr() {
+		return type == null ? new String[] {} : type.split("");
+	}
+	
 	public Criteria() {
 		this(1,10);
 	}
 	
-	public Criteria(int pageNum, int amount) {
-		this.pageNum = pageNum;
+	public Criteria(int pagenum, int amount) {
+		this.pageNum = pagenum;
 		this.amount = amount;
 	}
 	
-	
-}
+}//

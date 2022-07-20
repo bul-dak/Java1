@@ -6,13 +6,11 @@
 <mapper namespace="org.zerock.mapper.BoardMapper">
 
 	<select id="getList" resultType="org.zerock.domain.BoardVO">
-		select * from tbl_board order by
-		bno desc
+		select * from tbl_board order by bno desc
 	</select>
 
 	<select id="read" resultType="org.zerock.domain.BoardVO">
-		select * from tbl_board where bno =
-		#{bno}
+		select * from tbl_board where bno = #{bno}
 	</select>
 
 	<delete id="delete">
@@ -37,25 +35,59 @@
 	</insert>
 
 	<update id="update">
-		update tbl_board set title=#{title},
-		content=#{content}, writer=#{writer},
+		update tbl_board set title=#{title}, content=#{content}, writer=#{writer},
 		updatedate=sysdate
-		where
-		bno=#{bno}
+		where bno=#{bno}
 	</update>
 
-	<select id="getListWithPagging"	resultType="org.zerock.domain.BoardVO">
-		<![CDATA[
-		select bno, title, content, writer, regdate, updatedate
-		from (
-			select /*+ index_desc(tbl_board pk_board) */
-			rownum rn, bno, title,content, writer,regdate, updatedate
-			from tbl_board
-			where ROWNUM <= #{pageNum} * #{amount}
-		)
-		where rn > (#{pageNum}-1) * #{amount}
-		]]>
+
+	<select id="getListWithPagging"
+		resultType="org.zerock.domain.BoardVO">
+      <![CDATA[
+      select bno, title, content, writer, regdate, updatedate
+      from (
+         select /*+ index_desc(tbl_board pk_board) */
+         rownum rn, bno, title,content, writer,regdate, updatedate
+         from tbl_board
+         where ROWNUM <= #{pageNum} * #{amount}
+      )
+      where rn > (#{pageNum}-1) * #{amount}
+      ]]>
 	</select>
+
+	<select id="getTotalCount" resultType="int">
+		select count(*) from
+		tbl_board where bno > 0
+	</select>
+
+
+	<!-- 검색조건 -->
+	<select id="searchTest" resultType="org.zerock.domain.BoardVO">
+		
+		<![CDATA[
+		select * from tbl_board
+		where
+		]]>	
+		 <trim suffix="and">	
+			<foreach collection="map" index="key" item="val"
+				separator="or" open="(" close=")">
+				<if test="key == 'T'.toString()">
+					title like #{val}
+				</if>
+				<if test="key == 'C'.toString()">
+					content like #{val}
+				</if>
+				<if test="key == 'W'.toString()">
+					writer like #{val}
+				</if>
+			</foreach>
+		  </trim>
+		<![CDATA[
+		rownum < 10
+		]]>
+		
+	</select>
+
 
 
 </mapper>

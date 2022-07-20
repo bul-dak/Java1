@@ -52,9 +52,7 @@ public class BoardServiceTests {
 	@Test
 	public void testGetList() {
 		service.getList(new Criteria(2,10));
-		
 	}
-	
 	
 }//
 

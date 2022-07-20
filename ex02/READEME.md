@@ -24,30 +24,3 @@ insert into TBL_BOARD(bno, title, content, writer)
 values(seq_board.nextval, 'java', '내용', '남궁성');
 
 commit;
-
-0718 - 수업
-
-**60. web.xml에 아래 코드 추가 // 한글 작업
-<filter>
-   <filter-name>encoding</filter-name>
-   <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-   <init-param>
-      <param-name>encoding</param-name>
-      <param-value>UTF-8</param-value>
-   </init-param>
-</filter>
-
-<filter-mapping>
-   <filter-name>encoding</filter-name>
-   <servlet-name>appServlet</servlet-name>
-</filter-mapping>
-
-**61. list.jsp 에 아래 추가
-<script>
-   $(document).ready(function(){
-      var result = '<c:out value="${result}"/>';
-      console.log("result" + result);
-   });
-</script>
-
-**62. list.jsp에 <!-- /.table-responsive --> 바로 아래에 아래 추가

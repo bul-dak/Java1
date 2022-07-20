@@ -19,42 +19,47 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                        
                         <form role="form" action="/board/modify" method=post>
-                           <div class="form-group">
-                              <label>Bno</label>
-                              <input name="bno" readonly="readonly" class="form-control" value='<c:out value="${board.bno}"/>'>
-                           </div>
-                           <div class="form-group">
-                              <label>Title</label>
-                              <input name="title" class="form-control" value='<c:out value="${board.title}"/>'>
-                           </div>
-                           <div class="form-group">
-                              <label>Text area</label>
-                              <textarea class="form-control" rows="3" name="content"><c:out value="${board.content}"/></textarea>
-                           </div>
-                           <div class="form-group">
-                              <label>Writer</label>
-                              <input name="writer" readonly="readonly" class="form-control" value='<c:out value="${board.writer}"/>'>
-                           </div>
-                           <div class="form-group">
-                              <label>RegDate</label>
-                              <input name="regdate" readonly="readonly" class="form-control"
-                               value='<fmt:formatDate value="${board.regdate}" pattern="yyyy/MM/dd" />'>
-                           </div>
-                           
-                           <div class="form-group">
-                              <label>UpdateDate</label>
-                              <input name="updatedate" readonly="readonly" class="form-control"
-                               value='<fmt:formatDate value="${board.updatedate}" pattern="yyyy/MM/dd" />'>
-                           </div>
-                           
-                           <button type="submit" data-oper='modify' class="btn btn-default">Modify</button> 
-                           <button type="submit" data-oper='remove' class="btn btn-danger">Remove</button> 
-                           <button type="submit" data-oper='list' class="btn btn-info">List</button> 
-                           
-                           
+                        	
+                        	<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
+                        		<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
+                        	
+                        	<div class="form-group">
+                        		<label>Bno</label>
+                        		<input name="bno" readonly="readonly" class="form-control" value='<c:out value="${board.bno}"/>'>
+                        	</div>
+                        	<div class="form-group">
+                        		<label>Title</label>
+                        		<input name="title" class="form-control" value='<c:out value="${board.title}"/>'>
+                        	</div>
+                        	<div class="form-group">
+                        		<label>Text area</label>
+                        		<textarea class="form-control" rows="3" name="content"><c:out value="${board.content}"/></textarea>
+                        	</div>
+                        	<div class="form-group">
+                        		<label>Writer</label>
+                        		<input name="writer" readonly="readonly" class="form-control" value='<c:out value="${board.writer}"/>'>
+                        	</div>
+                        	<div class="form-group">
+                        		<label>RegDate</label>
+                        		<input name="regdate" readonly="readonly" class="form-control"
+                        		 value='<fmt:formatDate value="${board.regdate}" pattern="yyyy/MM/dd" />'>
+                        	</div>
+                        	
+                        	<div class="form-group">
+                        		<label>UpdateDate</label>
+                        		<input name="updatedate" readonly="readonly" class="form-control"
+                        		 value='<fmt:formatDate value="${board.updatedate}" pattern="yyyy/MM/dd" />'>
+                        	</div>
+                        	
+                        	<button type="submit" data-oper='modify' class="btn btn-default">Modify</button> 
+                        	<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button> 
+                        	<button type="submit" data-oper='list' class="btn btn-info">List</button> 
+                        	
+                        	
                         </form>
-                           
+                        	
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->
@@ -66,29 +71,33 @@
             <!-- /.row -->
             
 <script type="text/javascript">
-   $(document).ready(function(){
-      var formObj = $("form");
-      
-      $('button').on("click",function(e){
-         e.preventDefault();
-         
-         var operation = $(this).data('oper');
-         console.log(operation);
-         
-         if(operation === 'remove'){
-            formObj.attr("action","/board/remove")
-         }else if(operation === 'list'){
-            //self.location = "/board/list";
-            formObj.attr("action","/board/list").attr("method","get");
-            formObj.empty();
-         }
-            formObj.submit();
-      });
-      
-   });
+	$(document).ready(function(){
+		var formObj = $("form");
+		
+		$('button').on("click",function(e){
+			e.preventDefault();
+			
+			var operation = $(this).data('oper');
+			console.log(operation);
+			
+			if(operation === 'remove'){
+				formObj.attr("action","/board/remove")
+			}else if(operation === 'list'){
+				formObj.attr("action","/board/list").attr("method","get");
+				var pageNumTag = $("input[name='pageNum']").clone();
+				var amountTag = $("input[name='amount']").clone();
+				formObj.empty();
+				formObj.append(pageNumTag);
+				formObj.append(amountTag);
+			}
+				formObj.submit();
+		});
+		
+	});
 </script>            
             
             
             
  <%@include file="../includes/footer.jsp" %>
+
 
