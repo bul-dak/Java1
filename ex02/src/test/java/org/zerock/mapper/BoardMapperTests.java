@@ -99,9 +99,25 @@ public class BoardMapperTests {
 		log.info(list);
 	}
 	
+	@Test
+	   public void testSearchPaging() {
+	      Criteria cri = new Criteria();
+	      cri.setType("TC");
+	      cri.setKeyword("이수정");
+	      List<BoardVO> list = mapper.getListWithPagging(cri);
+	      log.info(list);
+	   }
 	
-	
-	
+	@Test
+	public void testTotal() {
+		Criteria cri = new Criteria();
+		cri.setType("TC");
+		cri.setKeyword("이수정");
+
+		int count = mapper.getTotalCount(cri);
+		
+		log.info("count : " + count);
+	}
 	
 	
 	
